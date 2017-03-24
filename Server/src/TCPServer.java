@@ -70,7 +70,7 @@ public class TCPServer extends Thread {
 				
 				ArrayList<String> files = getFiles(PATH);
 				System.out.println(files.size()+ " size");
-				outToClient.writeBytes(viewFiles(files));
+				outToClient.writeBytes(viewFiles(files)+'\n');
 				int iFile=inFromClient.read();
 				System.out.println("FROM CLIENT: "+ iFile+ " "+ files.get(iFile));
 				outToClient.writeBytes(files.get(iFile));
