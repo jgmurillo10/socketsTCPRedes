@@ -28,15 +28,21 @@ public static void main(String[] args)throws Exception {
 		System.out.println("FROM SERVER FILES: "+ files);
 		String iFile = inFromUser.readLine();
 		outToServer.writeBytes(iFile + '\n');
-		int num= Integer.parseInt(iFile)+1;
+		int num= Integer.parseInt(iFile)+1;		
 		
-		
-		String name = inFromServer.readLine();
-		System.out.println(name);
-		File file = new File(PATH , "test" + num + ".txt");
-		long fileSize = inFromServer.read();
-		System.out.println("Saving " + file + " from user... ("
-		        + fileSize + " bytes)");
+		  byte[] contents = new byte[10000];
+		 //Initialize the FileOutputStream to the output file's full path.
+        FileOutputStream fos = new FileOutputStream(new File(PATH , "test" + num + ".txt"));
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        
+        //No of bytes read in one read() call
+        int bytesRead = 0; 
+        
+        while((bytesRead=clientSocket.getInputStream().read(contents))!=-1)
+            bos.write(contents, 0, bytesRead); 
+        
+        bos.flush(); 
+        System.out.println("terminó");
 		clientSocket.close();
 	}
 }

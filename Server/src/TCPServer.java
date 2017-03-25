@@ -81,14 +81,12 @@ public class TCPServer extends Thread {
 				int iFile2 = iFile+1;
 
 				File myFile = new File( PATH + "/test" + iFile2 + ".txt" );
-				outToClient.writeUTF(myFile.getName());
-				outToClient.writeLong(myFile.length());
 
-				System.out.println("Sending " + myFile.getName() + " ("
-						+ myFile.length() + " bytes) to server...");
-				writeFile(myFile, outToClient);
-				System.out.println("Finished sending " + myFile.getName()
-						+ " to server");
+	            System.out.println("Sending " + myFile.getName() + " ("
+	                    + myFile.length() + " bytes) to server...");
+	            writeFile(myFile, outToClient);
+	            System.out.println("Finished sending " + myFile.getName()
+	                    + " to server");
 
 
 
